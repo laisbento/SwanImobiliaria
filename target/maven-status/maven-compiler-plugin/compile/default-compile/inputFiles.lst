@@ -1,0 +1,9 @@
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/dto/ImovelDTO.java
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/domain/Imovel.java
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/Application.java
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/type/NegocioType.java
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/repository/ImovelJpaRepository.java
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/type/ImovelType.java
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/rest/ImoveisController.java
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/service/ImovelService.java
+/home/laisparticular/Documentos/IFSP/SwanImobiliaria/src/main/java/com/swanimobiliaria/converter/ImovelConverter.java
