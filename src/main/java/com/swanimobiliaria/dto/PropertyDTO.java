@@ -114,6 +114,7 @@ public class PropertyDTO {
             dataType = "string",
             example = "www.endereco.com"
     )
+
     private String thumbnail;
 
     public UUID getId() {
