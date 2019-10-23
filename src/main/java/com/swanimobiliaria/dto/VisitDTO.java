@@ -15,14 +15,16 @@ public class VisitDTO {
     @ApiModelProperty(
             value = "Visit identification UUID",
             dataType = "string",
-            example = "46ad237d-8e3d-4aaf-887b-dbeb362775b8"
+            example = "46ad237d-8e3d-4aaf-887b-dbeb362775b8",
+            required = false
     )
     private UUID id;
 
     @ApiModelProperty(
             value = "Property identification UUID",
             dataType = "string",
-            example = "1d96a44b-ed7c-466c-9365-75914353c7c3"
+            example = "7643a688-5dcd-10d7-6eab-d7979a72cb7b",
+            required = true
     )
     private UUID propertyId;
 
@@ -45,15 +47,15 @@ public class VisitDTO {
     @ApiModelProperty(
             value = "Phone number of the property visitor",
             dataType = "string",
-            example = "19-98845-7070",
+            example = "19988457070",
             required = true
     )
-    private Integer phone;
+    private String phone;
 
     @ApiModelProperty(
             value = "Visit date",
             dataType = "date",
-            example = "19/10/2020",
+            example = "2019-10-24",
             required = true
     )
     private Date visitDate;
@@ -68,6 +70,10 @@ public class VisitDTO {
 
     public UUID getPropertyId() {
         return propertyId;
+    }
+
+    public void setPropertyId(UUID propertyId) {
+        this.propertyId = propertyId;
     }
 
     public String getName() {
@@ -86,11 +92,11 @@ public class VisitDTO {
         this.email = email;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

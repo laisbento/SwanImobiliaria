@@ -1,5 +1,6 @@
 package com.swanimobiliaria.rest;
 
+import com.swanimobiliaria.domain.Property;
 import com.swanimobiliaria.dto.PropertyDTO;
 import com.swanimobiliaria.service.PropertyService;
 import io.swagger.annotations.Api;
@@ -85,10 +86,26 @@ public class PropertyController {
             response = PropertyDTO.class
     )
     @PutMapping(
-            "/{propertyId}"
+            path = "/{propertyId}"
     )
     public PropertyDTO updateProperty(@PathVariable UUID propertyId, @RequestBody PropertyDTO propertyDTO) {
         return propertyService.updateProperty(propertyId, propertyDTO);
+    }
+
+    @ApiOperation(
+            value = "Get a property by its id",
+            response = PropertyDTO.class
+    )
+    @ApiResponse(
+            message = "Success",
+            code = 200,
+            response = PropertyDTO.class
+    )
+    @GetMapping(
+            path = "/{propertyId}"
+    )
+    public PropertyDTO getPropertyById(@PathVariable UUID propertyId){
+        return propertyService.getPropertyById(propertyId);
     }
 
 

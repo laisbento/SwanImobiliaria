@@ -33,7 +33,7 @@ public class Visit {
     private String email;
 
     @Column(name = "telefone")
-    private Integer telefone;
+    private String telefone;
 
     @Column(name = "data")
     private Date data;
@@ -70,11 +70,11 @@ public class Visit {
         this.email = email;
     }
 
-    public Integer getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
-    public void setTelefone(Integer telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
 

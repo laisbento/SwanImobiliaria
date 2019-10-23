@@ -36,13 +36,22 @@ public class PropertyService {
     }
 
     public void deleteProperty(UUID propertyId){
-        Property property = propertyJpaRepository.findById(propertyId).orElseThrow(() -> new ResourceNotFoundException("Property not found!"));
+        Property property = getProperty(propertyId);
         propertyJpaRepository.delete(property);
     }
 
     public PropertyDTO updateProperty(UUID propertyId, PropertyDTO propertyDTO){
-        Property property = propertyJpaRepository.findById(propertyId).orElseThrow(() -> new ResourceNotFoundException("Property not found!"));
+        Property property = getProperty(propertyId);
         Property updatedProperty = propertyJpaRepository.save(PropertyEditableConverter.fromDTOtoDomain(property, propertyDTO));
         return PropertyConverter.fromDomainToDTO(updatedProperty);
+    }
+
+    public PropertyDTO getPropertyById(UUID propertyId){
+        Property property = getProperty(propertyId);
+        return PropertyConverter.fromDomainToDTO(property);
+    }
+
+    private Property getProperty(UUID propertyId) {
+        return propertyJpaRepository.findById(propertyId).orElseThrow(() -> new ResourceNotFoundException("Property not found!"));
     }
 }
