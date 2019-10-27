@@ -1,5 +1,5 @@
 # Ignore folder named '.idea'
-.idea
+/.idea
 
 # Ignore golder named 'target'
-target
+/target
