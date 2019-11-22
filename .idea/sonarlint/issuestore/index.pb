@@ -19,3 +19,15 @@ d
 4src/main/java/com/swanimobiliaria/view/js/imoveis.js,4/d/4dce3cf6e64e45c754c6f42a18a254a9a0cde371
 g
 7src/main/java/com/swanimobiliaria/view/pages/index.html,c/c/ccdbdcde198786d5ee96b38f450291c22390e024
+q
+Asrc/main/java/com/swanimobiliaria/model/service/VisitService.java,1/7/17c403ce40f133128dc6f7f803067acf1d5f012c
+u
+Esrc/main/java/com/swanimobiliaria/model/messaging/ReminderSender.java,b/c/bc6ce95ffd263282117ada4f4e639ae7fec71088
+y
+Isrc/main/java/com/swanimobiliaria/model/repository/RoleJpaRepository.java,2/f/2fd54bc4bb941a46faeef45624db5f0896ccb8df
+g
+7src/main/java/com/swanimobiliaria/view/pages/login.html,9/7/9732bcc95c2db9244e7e2da3ef7a5aca35b64f8c
+y
+Isrc/main/java/com/swanimobiliaria/model/repository/UserJpaRepository.java,8/1/81494d8d19a205e495aea8617c97455eeea9e074
+`
+0src/main/java/com/swanimobiliaria/view/js/adm.js,8/1/81d7f22eceef19a1922436c6937fc762c700aa01

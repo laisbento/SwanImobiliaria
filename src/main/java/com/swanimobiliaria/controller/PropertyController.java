@@ -2,6 +2,7 @@ package com.swanimobiliaria.controller;
 
 import com.swanimobiliaria.model.dto.PropertyDTO;
 import com.swanimobiliaria.model.service.PropertyService;
+import com.swanimobiliaria.model.type.PropertyType;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -105,6 +107,26 @@ public class PropertyController {
     )
     public PropertyDTO getPropertyById(@PathVariable UUID propertyId){
         return propertyService.getPropertyById(propertyId);
+    }
+
+    @ApiOperation(
+            value = "Get a property by some properties",
+            response = PropertyDTO.class
+    )
+    @ApiResponse(
+            message = "Success",
+            code = 200,
+            response = PropertyDTO.class
+    )
+    @GetMapping(
+            value = "/search"
+    )
+    public List<PropertyDTO> getPropertyByOptions(@RequestParam PropertyType propertyType,
+                                                  @RequestParam (required = false) String city,
+                                                  @RequestParam Integer rooms,
+                                                  @RequestParam (required = false) Double priceFrom,
+                                                  @RequestParam (required = false) Double priceTo){
+        return propertyService.getPropertyByOptions(propertyType, city, rooms, priceFrom, priceTo);
     }
 
 

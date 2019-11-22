@@ -4,25 +4,34 @@
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../css/stylesheet.css" rel="stylesheet" type="text/css">
+    <meta name="google-signin-client_id"
+          content="1028033961408-bbmid69l5cgrv5vqdkjhgfherh8i9sot.apps.googleusercontent.com">
     <title>Swan Imobiliaria</title>
 </head>
 <body onload="loadProperties()">
+<div class="container d-flex justify-content-end" style="margin-top: 5px">
+    <div class="container d-flex justify-content-start">
+        <label class="hidden" id="email"></label>
+    </div>
+    <div class="g-signin2" id="googleButton" data-onsuccess="onSignIn"></div>
+    <label class="hidden" id="signOut" onclick="signOut()">Sair</label>
+</div>
 <div class="container d-flex flex-column">
     <div class="container d-flex justify-content-center logo">
-        <img alt="Swan Imob" class="img-fluid" width="304" height="236" src="../imgs/logo-paginainicial.png">
+        <img alt="Swan Imob" id="logo" class="img-fluid" width="304" height="236" src="../imgs/logo-paginainicial.png"
+             onclick="location.reload()">
     </div>
     <div class="d-flex justify-content-center">
         <div class="d-flex justify-content-center">
             <select id="options">
                 <option value="Apartamento">Apartamento</option>
-                <option value="Est&#250;dio">Est&#250;dio</option>
-                <option value="Ch&#225;cara">Ch&#225;cara</option>
+                <option value="Estudio">Est&#250;dio</option>
+                <option value="Chacara">Ch&#225;cara</option>
                 <option value="Casa">Casa</option>
             </select>
         </div>
         <div class="d-flex justify-content-center">
-            <input type="text" id="inputAddress" class="inputText" value placeholder="Digite a cidade buscada"
-                   required/>
+            <input type="text" id="inputAddress" class="inputText" value placeholder="Digite a cidade buscada"/>
         </div>
     </div>
     <div class="container d-flex flex-row justify-content-center">
@@ -41,14 +50,15 @@
         </div>
         <div class="d-flex justify-content-center opcao">
             <label style="margin-right: 10px">Pre&#231;os:</label>
-            <input type="number" id="de" class="inputPreco" value placeholder="De"
-                   required/>
-            <input type="number" id="para" class="inputPreco" value placeholder="At&#233;"
-                   required/>
+            <input type="number" id="de" class="inputPreco" value placeholder="De"/>
+            <input type="number" id="para" class="inputPreco" value placeholder="At&#233;"/>
         </div>
         <div class="d-flex justify-content-center opcao">
             <button id="searchButton" class="searchButton" onclick="filtrar()">Buscar!</button>
         </div>
+    </div>
+    <div class="container d-flex justify-content-center" style="margin-top: 20px">
+        <h1 class="label-visita">Imoveis em Destaque</h1>
     </div>
     <div class="container d-flex flex-row justify-content-center" style="margin-top: 20px">
         <div class="imoveis" id="divClass1">
@@ -78,7 +88,7 @@
             </div>
         </div>
         <div class="imoveis" id="divClass3">
-            <div class="cartao"onclick="loadChoosen(3)">
+            <div class="cartao" onclick="loadChoosen(3)">
                 <div id="imagem3"></div>
                 <div class="infos">
                     <span hidden id="matricula3"></span>
@@ -93,6 +103,18 @@
 </div>
 <script src="../js/imoveis.js"></script>
 <script src="../js/search.js"></script>
-<script src="../js/contact.js"></script>
+<script src="../js/adm.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+    function activePlacesSearch() {
+        var options = {
+            types: ['(cities)'],
+            componentRestrictions: {country: "br"}
+        };
+        var input = document.getElementById('inputAddress');
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+    }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9KDF3b4CCguquvcRONUTPDqU5fJwnRj4&libraries=places&callback=activePlacesSearch"></script>
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>

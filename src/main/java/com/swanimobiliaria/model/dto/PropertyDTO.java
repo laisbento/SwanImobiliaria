@@ -23,7 +23,7 @@ public class PropertyDTO {
     @ApiModelProperty(
             value = "List of property types",
             dataType = "com.swanimobiliaria.model.type.PropertyType",
-            allowableValues = "Chácara, Apartamento, Casa, Estúdio"
+            allowableValues = "Chacara, Apartamento, Casa, Estudio"
     )
     private PropertyType propertyType;
 

@@ -1,8 +1,8 @@
 package com.swanimobiliaria.model.type;
 
 public enum PropertyType {
-    Chácara,
+    Chacara,
     Apartamento,
     Casa,
-    Estúdio
+    Estudio
 }
