@@ -19,11 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
 @Api(value = "Imovel")
-@RequestMapping("/imoveis")
+@RequestMapping("/public/imoveis")
 @RestController
 public class PropertyController {
 
@@ -59,7 +60,7 @@ public class PropertyController {
     )
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public PropertyDTO createProperty(@RequestBody PropertyDTO propertyDTO) {
+    public PropertyDTO createProperty(@Valid @RequestBody PropertyDTO propertyDTO) {
         return propertyService.createProperty(propertyDTO);
     }
 
@@ -73,7 +74,7 @@ public class PropertyController {
     @DeleteMapping(
             path = "{propertyId}"
     )
-    public void deleteProperty(@PathVariable UUID propertyId) {
+    public void deleteProperty(@PathVariable Integer propertyId) {
         propertyService.deleteProperty(propertyId);
     }
 
@@ -89,7 +90,7 @@ public class PropertyController {
     @PutMapping(
             path = "/{propertyId}"
     )
-    public PropertyDTO updateProperty(@PathVariable UUID propertyId, @RequestBody PropertyDTO propertyDTO) {
+    public PropertyDTO updateProperty(@PathVariable Integer propertyId, @RequestBody PropertyDTO propertyDTO) {
         return propertyService.updateProperty(propertyId, propertyDTO);
     }
 
@@ -105,7 +106,7 @@ public class PropertyController {
     @GetMapping(
             path = "/{propertyId}"
     )
-    public PropertyDTO getPropertyById(@PathVariable UUID propertyId){
+    public PropertyDTO getPropertyById(@PathVariable Integer propertyId){
         return propertyService.getPropertyById(propertyId);
     }
 

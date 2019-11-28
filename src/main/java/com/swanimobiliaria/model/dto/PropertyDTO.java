@@ -5,6 +5,7 @@ import com.swanimobiliaria.model.type.BusinessType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @ApiModel(
@@ -14,17 +15,11 @@ import java.util.UUID;
 public class PropertyDTO {
 
     @ApiModelProperty(
-            value = "Property identification UUID",
-            dataType = "string",
-            example = "1d96a44b-ed7c-466c-9365-75914353c7c3"
-    )
-    private UUID id;
-
-    @ApiModelProperty(
             value = "List of property types",
             dataType = "com.swanimobiliaria.model.type.PropertyType",
             allowableValues = "Chacara, Apartamento, Casa, Estudio"
     )
+    @NotNull(message = "Type must be provided")
     private PropertyType propertyType;
 
     @ApiModelProperty(
@@ -33,6 +28,7 @@ public class PropertyDTO {
             example = "Rua Três Lagoas",
             required = true
     )
+    @NotNull(message = "Address must be provided")
     private String rua;
 
     @ApiModelProperty(
@@ -49,6 +45,7 @@ public class PropertyDTO {
             example = "Campinas",
             required = true
     )
+    @NotNull(message = "City must be provided")
     private String cidade;
 
     @ApiModelProperty(
@@ -57,6 +54,7 @@ public class PropertyDTO {
             example = "SP",
             required = true
     )
+    @NotNull(message = "State must be provided")
     private String estado;
 
     @ApiModelProperty(
@@ -72,6 +70,7 @@ public class PropertyDTO {
             dataType = "integer",
             example = "3"
     )
+    @NotNull(message = "Number of rooms must be provided")
     private Integer quartos;
 
     @ApiModelProperty(
@@ -79,6 +78,7 @@ public class PropertyDTO {
             dataType = "integer",
             example = "2"
     )
+    @NotNull(message = "Number of bathrooms must be provided")
     private Integer banheiros;
 
     @ApiModelProperty(
@@ -86,6 +86,7 @@ public class PropertyDTO {
             dataType = "integer",
             example = "2"
     )
+    @NotNull(message = "Number of parking spots must be provided")
     private Integer vagas;
 
     @ApiModelProperty(
@@ -93,6 +94,7 @@ public class PropertyDTO {
             dataType = "integer",
             example = "389"
     )
+    @NotNull(message = "Area must be provided")
     private Double area;
 
     @ApiModelProperty(
@@ -100,6 +102,7 @@ public class PropertyDTO {
             dataType = "com.swanimobiliaria.model.type.BusinessType",
             allowableValues = "Aluguel, Venda"
     )
+    @NotNull(message = "Business type must be provided")
     private BusinessType businessType;
 
     @ApiModelProperty(
@@ -110,10 +113,11 @@ public class PropertyDTO {
     private String thumbnail;
 
     @ApiModelProperty(
-            value = "Property's value",
+            value = "Property's price",
             dataType = "double",
             example = "100000.00"
     )
+    @NotNull(message = "Price must be provided")
     private Double valor;
 
     @ApiModelProperty(
@@ -121,6 +125,7 @@ public class PropertyDTO {
             dataType = "string",
             example = "-37.72759"
     )
+    @NotNull(message = "Latitude must be provided")
     private String lat;
 
     @ApiModelProperty(
@@ -128,15 +133,15 @@ public class PropertyDTO {
             dataType = "string",
             example = "-73.78321"
     )
+    @NotNull(message = "Longitude must be provided")
     private String lng;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    @ApiModelProperty(
+            value = "Property's reference code",
+            dataType = "string",
+            example = "123"
+    )
+    private Integer codRef;
 
     public PropertyType getPropertyType() {
         return propertyType;
@@ -256,5 +261,13 @@ public class PropertyDTO {
 
     public void setLng(String lng) {
         this.lng = lng;
+    }
+
+    public Integer getCodRef() {
+        return codRef;
+    }
+
+    public void setCodRef(Integer codRef) {
+        this.codRef = codRef;
     }
 }

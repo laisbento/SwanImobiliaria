@@ -21,12 +21,12 @@ public class VisitDTO {
     private UUID id;
 
     @ApiModelProperty(
-            value = "Property identification UUID",
+            value = "Property identification",
             dataType = "string",
-            example = "7643a688-5dcd-10d7-6eab-d7979a72cb7b",
+            example = "123",
             required = true
     )
-    private UUID propertyId;
+    private Integer propertyId;
 
     @ApiModelProperty(
             value = "Name of the property visitor",
@@ -68,11 +68,11 @@ public class VisitDTO {
         this.id = id;
     }
 
-    public UUID getPropertyId() {
+    public Integer getPropertyId() {
         return propertyId;
     }
 
-    public void setPropertyId(UUID propertyId) {
+    public void setPropertyId(Integer propertyId) {
         this.propertyId = propertyId;
     }
 

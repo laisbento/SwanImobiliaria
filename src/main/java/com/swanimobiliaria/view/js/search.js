@@ -38,7 +38,7 @@ function filtrar() {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8087/imoveis/search?propertyType=' + tipoImovel +
+        url: 'http://localhost:8087/public/imoveis/search?propertyType=' + tipoImovel +
             '&city=' + cidade[0] +
             '&rooms=' + numeroQuartos +
             '&priceFrom=' + precoDe +

@@ -17,15 +17,6 @@ import java.util.UUID;
 @Table(name = "imoveis")
 public class Property {
 
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(
-            name = "UUID",
-            strategy = "org.hibernate.id.UUIDGenerator"
-    )
-    @Column(name = "id")
-    private UUID id;
-
     @Column(name = "tipo_imovel")
     @Enumerated(EnumType.STRING)
     private PropertyType propertyType;
@@ -73,13 +64,9 @@ public class Property {
     @Column(name = "lng")
     private String lng;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
+    @Id
+    @Column(name = "cod_ref")
+    private Integer codRef;
 
     public PropertyType getImovelType() {
         return propertyType;
@@ -199,5 +186,13 @@ public class Property {
 
     public void setLng(String lng) {
         this.lng = lng;
+    }
+
+    public Integer getCodRef() {
+        return codRef;
+    }
+
+    public void setCodRef(Integer codRef) {
+        this.codRef = codRef;
     }
 }

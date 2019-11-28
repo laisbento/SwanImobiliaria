@@ -1,26 +1,497 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <link href="../css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="../css/bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="../css/stylesheet.css" rel="stylesheet" type="text/css">
-    <title>Swan Imobiliaria</title>
+    <title>Swan Imobiliaria - Administracao</title>
 </head>
-<body>
+<body onload="autoCompleteCep()">
 <div class="container d-flex flex-column">
-    <div class="container d-flex justify-content-center logo">
-        <img alt="Swan Imob" id="logo" class="img-fluid" width="304" height="236" src="../imgs/logo-paginainicial.png"
-             onclick="location.reload()">
+    <div class="container d-flex justify-content-between align-items-center logo">
+        <img alt="Swan Imob" id="logo" class="img-fluid" width="150" height="150" src="../imgs/logo-paginainicial.png"
+             onclick="location.href='index.html'">
+        <label id="incluir" class="menu" onclick="insert()">Incluir</label>
+        <label id="editar" class="menu" onclick="edit()">Editar</label>
+        <label id="deletar" class="menu" onclick="del()">Deletar</label>
+        <label id="visitas" class="menu" onclick="">Visitas</label>
+        <label id="users" class="menu" onclick="">Usu&#225;rios</label>
+        <label id="logout" class="menu" onclick="">Sair</label>
     </div>
-    <div class="d-flex justify-content-center">
-        <input type="text" id="inputEmail" class="inputText" value placeholder="Digite o login"/>
+    <div class="container d-flex flex-column justify-content-center align-items-center">
+        <label id="welcome">Bem-vindo(a)! Escolha um item do Menu para iniciar.</label>
     </div>
-    <div class="d-flex justify-content-center">
-        <input type="password" id="inputPassword" class="inputText" value placeholder="Digite a senha" style="margin-top: 20px"/>
-    </div>
-    <div class="d-flex justify-content-center opcao">
-        <button id="searchButton" class="searchButton" onclick="logar()">Entrar</button>
+    <div class="container d-flex flex-column justify-content-center align-items-center hidden">
+        <div id="imovel-insert-form" class="hidden">
+            <h1 class="label-visita">Inclua um Novo Im&#243;vel</h1>
+            <table>
+                <tbody>
+                <tr>
+                    <td>
+                        <label>Tipo do Im&#243;vel:</label>
+                    </td>
+                    <td>
+                        <select class="options-admin" id="tipo-imovel">
+                            <option value="Apartamento">Apartamento</option>
+                            <option value="Estudio">Est&#250;dio</option>
+                            <option value="Chacara">Ch&#225;cara</option>
+                            <option value="Casa">Casa</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Tipo de Neg&#243;cio:</label>
+                    </td>
+                    <td>
+                        <select class="options-admin" id="tipo-negocio">
+                            <option value="Aluguel">Aluguel</option>
+                            <option value="Venda">Venda</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>CEP:</label>
+                    </td>
+                    <td>
+                        <input name="cep" class="form-imovel" type="text" id="cep" value
+                               placeholder="Digite o CEP e aperte TAB"
+                               size="10" maxlength="9"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Rua:</label>
+                    </td>
+                    <td>
+                        <input name="rua" class="form-imovel" type="text" id="rua" value placeholder="Digite a rua"
+                               maxlength="300"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Numero:</label>
+                    </td>
+                    <td>
+                        <input name="numero" class="form-imovel" type="number" value placeholder="Digite o n&#250;mero"
+                               id="numero" maxlength="5"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Cidade:</label>
+                    </td>
+                    <td>
+                        <input name="cidade" class="form-imovel" type="text" value placeholder="Digite a cidade"
+                               id="cidade"
+                               maxlength="150"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Estado:</label>
+                    </td>
+                    <td>
+                        <input name="uf" class="form-imovel" type="text" id="uf" value
+                               placeholder="Digite o estado - ex: SP"
+                               size="2" maxlength="2"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>&#193;rea:</label>
+                    </td>
+                    <td>
+                        <input name="area" class="form-imovel" type="text" id="area" value
+                               placeholder="Digite a &#225;rea - ex: 235" size="10" maxlength="10"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Link da foto:</label>
+                    </td>
+                    <td>
+                        <input name="foto" class="form-imovel" value placeholder="Insira o link da foto" type="text"
+                               id="foto"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Quartos:</label>
+                    </td>
+                    <td>
+                        <select class="options-admin" id="quartos" style="width: 80px">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </td>
+                <tr>
+                    <td>
+                        <label>Banheiros:</label>
+                    </td>
+                    <td>
+                        <select class="options-admin" id="banheiros" style="width: 80px">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Vagas:</label>
+                    </td>
+                    <td>
+                        <select class="options-admin" id="vagas" style="width: 80px">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Valor:</label>
+                    </td>
+                    <td>
+                        <input name="valor" class="form-imovel" type="text" id="valor" value
+                               placeholder="Digite o valor do imovel - ex: 450.00" maxlength="10"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Latitude:</label>
+                    </td>
+                    <td>
+                        <input name="lat" class="form-imovel" type="text" id="lat" value
+                               placeholder="Digite a latitude - ex: -21.156942"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Longitude:</label>
+                    </td>
+                    <td>
+                        <input name="lng" class="form-imovel" type="text" id="lng" value
+                               placeholder="Digite a latitude - ex: -21.156942"/>
+                    </td>
+                </tr>
+                </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center opcao">
+                <button id="searchButton" onclick="salvarImovel()">Salvar</button>
+            </div>
+        </div>
+        <div id="imovel-edit-form" class="hidden">
+            <h1 class="label-visita">Edite um Im&#243;vel</h1>
+            <div class="d-flex flex-column justify-content-center">
+                <label> C&#243;digo de Referencia:
+                    <input type="text" id="codref" class="form-imovel" style="width: 200px"/>
+                </label>
+                    <div class="d-flex justify-content-center opcao" style="margin-bottom: 20px">
+                        <button id="okButton" onclick="buscarImovelEdit()">Buscar</button>
+                    </div>
+                <div id="editable-table" class="hidden">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>Tipo do Im&#243;vel:</label>
+                            </td>
+                            <td>
+                                <select class="options-admin" id="tipo-imovel-editable">
+                                    <option value="Apartamento">Apartamento</option>
+                                    <option value="Estudio">Est&#250;dio</option>
+                                    <option value="Chacara">Ch&#225;cara</option>
+                                    <option value="Casa">Casa</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Tipo de Neg&#243;cio:</label>
+                            </td>
+                            <td>
+                                <select class="options-admin" id="tipo-negocio-editable">
+                                    <option value="Aluguel">Aluguel</option>
+                                    <option value="Venda">Venda</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>CEP:</label>
+                            </td>
+                            <td>
+                                <input name="cep" class="form-imovel" type="text" id="cep-editable" value
+                                       placeholder="Digite o CEP e aperte TAB"
+                                       size="10" maxlength="9"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Rua:</label>
+                            </td>
+                            <td>
+                                <input name="rua" class="form-imovel" type="text" id="rua-editable" value
+                                       placeholder="Digite a rua"
+                                       maxlength="300"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Numero:</label>
+                            </td>
+                            <td>
+                                <input name="numero" class="form-imovel" type="number" value
+                                       placeholder="Digite o n&#250;mero"
+                                       id="numero-editable" maxlength="5"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cidade:</label>
+                            </td>
+                            <td>
+                                <input name="cidade" class="form-imovel" type="text" value placeholder="Digite a cidade"
+                                       id="cidade-editable"
+                                       maxlength="150"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Estado:</label>
+                            </td>
+                            <td>
+                                <input name="uf" class="form-imovel" type="text" id="uf-editable" value
+                                       placeholder="Digite o estado - ex: SP"
+                                       size="2" maxlength="2"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>&#193;rea:</label>
+                            </td>
+                            <td>
+                                <input name="area" class="form-imovel" type="text" id="area-editable" value
+                                       placeholder="Digite a &#225;rea - ex: 235" size="10" maxlength="10"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Link da foto:</label>
+                            </td>
+                            <td>
+                                <input name="foto" class="form-imovel" value placeholder="Insira o link da foto"
+                                       type="text"
+                                       id="foto-editable"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Quartos:</label>
+                            </td>
+                            <td>
+                                <select class="options-admin" id="quartos-editable" style="width: 80px">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </td>
+                        <tr>
+                            <td>
+                                <label>Banheiros:</label>
+                            </td>
+                            <td>
+                                <select class="options-admin" id="banheiros-editable" style="width: 80px">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Vagas:</label>
+                            </td>
+                            <td>
+                                <select class="options-admin" id="vagas-editable" style="width: 80px">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Valor:</label>
+                            </td>
+                            <td>
+                                <input name="valor" class="form-imovel" type="text" id="valor-editable" value
+                                       placeholder="Digite o valor do imovel - ex: 450.00" maxlength="10"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Latitude:</label>
+                            </td>
+                            <td>
+                                <input name="lat" class="form-imovel" type="text" id="lat-editable" value
+                                       placeholder="Digite a latitude - ex: -21.156942"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Longitude:</label>
+                            </td>
+                            <td>
+                                <input name="lng" class="form-imovel" type="text" id="lng-editable" value
+                                       placeholder="Digite a latitude - ex: -21.156942"/>
+                            </td>
+                        </tr>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center opcao" style="margin-bottom: 20px">
+                        <button id="signupButton" onclick="atualizar()">Atualizar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="imovel-delete-form" class="hidden">
+            <h1 class="label-visita">Delete um Im&#243;vel</h1>
+            <div class="d-flex flex-column justify-content-center">
+                <label> C&#243;digo de Referencia:
+                    <input type="text" id="codref-del" class="form-imovel" style="width: 200px"/>
+                </label>
+                <div class="d-flex justify-content-center opcao" style="margin-bottom: 20px">
+                    <button id="okButton1" onclick="buscarImovelDel()">Buscar</button>
+                </div>
+                <div id="del-table" class="hidden">
+                    <table>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <label>Tipo do Im&#243;vel:</label>
+                            </td>
+                            <td>
+                                <input name="cep" class="form-imovel" type="text" id="tipo-imovel-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Tipo de Neg&#243;cio:</label>
+                            </td>
+                            <td>
+                                <input name="cep" class="form-imovel" type="text" id="tipo-negocio-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>CEP:</label>
+                            </td>
+                            <td>
+                                <input name="cep" class="form-imovel" type="text" id="cep-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Rua:</label>
+                            </td>
+                            <td>
+                                <input name="rua" class="form-imovel" type="text" id="rua-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Numero:</label>
+                            </td>
+                            <td>
+                                <input name="numero" class="form-imovel" type="number" id="num-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Cidade:</label>
+                            </td>
+                            <td>
+                                <input name="cidade" class="form-imovel" type="text" id="cidade-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Estado:</label>
+                            </td>
+                            <td>
+                                <input name="uf" class="form-imovel" type="text" id="uf-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>&#193;rea:</label>
+                            </td>
+                            <td>
+                                <input name="area" class="form-imovel" type="text" id="area-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <label>Link da foto:</label>
+                            </td>
+                            <td>
+                                <input name="foto" class="form-imovel" type="text" id="foto-del" readonly/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="d-flex justify-content-center opcao" style="margin-bottom: 20px">
+                        <button id="delButton" onclick="deletarImovel()">Deletar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../js/adm.js"></script>
 </body>
+</html>

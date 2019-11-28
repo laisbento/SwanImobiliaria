@@ -9,9 +9,9 @@
     <title>Swan Imobiliaria</title>
 </head>
 <body onload="loadProperties()">
-<div class="container d-flex justify-content-end" style="margin-top: 5px">
+<div class="container d-flex justify-content-around" style="margin-top: 5px">
     <div class="container d-flex justify-content-start">
-        <label class="hidden" id="email"></label>
+        <label id="adm" style="cursor: pointer" onclick="location.href='admin.html'">Administra&#231;&#227;o</label>
     </div>
     <div class="g-signin2" id="googleButton" data-onsuccess="onSignIn"></div>
     <label class="hidden" id="signOut" onclick="signOut()">Sair</label>
@@ -103,7 +103,7 @@
 </div>
 <script src="../js/imoveis.js"></script>
 <script src="../js/search.js"></script>
-<script src="../js/adm.js"></script>
+<script src="../js/login.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
     function activePlacesSearch() {

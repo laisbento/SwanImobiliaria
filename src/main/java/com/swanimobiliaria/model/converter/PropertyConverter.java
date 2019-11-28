@@ -10,7 +10,6 @@ public class PropertyConverter {
 
     public static PropertyDTO fromDomainToDTO(Property property){
         PropertyDTO propertyDTO = new PropertyDTO();
-        propertyDTO.setId(property.getId());
         propertyDTO.setPropertyType(property.getImovelType());
         propertyDTO.setRua(property.getRua());
         propertyDTO.setNumero(property.getNumero());
@@ -26,6 +25,7 @@ public class PropertyConverter {
         propertyDTO.setValor(property.getValor());
         propertyDTO.setLat(property.getLat());
         propertyDTO.setLng(property.getLng());
+        propertyDTO.setCodRef(property.getCodRef());
         return propertyDTO;
     }
 
@@ -46,6 +46,26 @@ public class PropertyConverter {
         property.setValor(propertyDTO.getValor());
         property.setLat(propertyDTO.getLat());
         property.setLng(propertyDTO.getLng());
+        property.setCodRef(propertyDTO.getCodRef());
+        return property;
+    }
+
+    public static Property fromDTOtoDomain(Property property, PropertyDTO propertyDTO) {
+        property.setPropertyType(propertyDTO.getPropertyType());
+        property.setRua(propertyDTO.getRua());
+        property.setNumero(propertyDTO.getNumero());
+        property.setCidade(propertyDTO.getCidade());
+        property.setEstado(propertyDTO.getEstado());
+        property.setCep(propertyDTO.getCep());
+        property.setQuartos(propertyDTO.getQuartos());
+        property.setBanheiros(propertyDTO.getBanheiros());
+        property.setVagas(propertyDTO.getVagas());
+        property.setArea(propertyDTO.getArea());
+        property.setBusinessType(propertyDTO.getBusinessType());
+        property.setValor(propertyDTO.getValor());
+        property.setThumbnail(propertyDTO.getThumbnail());
+        property.setLng(propertyDTO.getLng());
+        property.setLat(propertyDTO.getLat());
         return property;
     }
 }

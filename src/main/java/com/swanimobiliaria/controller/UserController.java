@@ -1,7 +1,7 @@
 package com.swanimobiliaria.controller;
 
-import com.swanimobiliaria.model.dto.LogDTO;
-import com.swanimobiliaria.model.service.LogService;
+import com.swanimobiliaria.model.dto.UserDTO;
+import com.swanimobiliaria.model.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -11,30 +11,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Api(value = "Log")
-@RequestMapping("/public/log")
+@Api(value = "Login")
+@RequestMapping("/public/admin")
 @RestController
-public class LogController {
+public class UserController {
 
-    private LogService logService;
+    private final UserService userService;
 
     @Autowired
-    public LogController(LogService logService) {
-        this.logService = logService;
+    public UserController(UserService userService) {
+        this.userService = userService;
     }
 
     @ApiOperation(
-            value = "Add a new log event",
-            response = LogDTO.class
+            value = "Login a user",
+            response = boolean.class
     )
     @ApiResponse(
             code = 200,
             message = "Success",
-            response = LogDTO.class
+            response = boolean.class
     )
     @PostMapping
-    public void addLog(@RequestBody LogDTO logDTO){
-        logService.addLog(logDTO);
+    public boolean login(@RequestBody UserDTO userDTO) {
+        return userService.findByUsernameAndPassword(userDTO.getUsername(), userDTO.getPassword());
     }
-
 }

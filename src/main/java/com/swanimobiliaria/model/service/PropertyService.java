@@ -1,7 +1,6 @@
 package com.swanimobiliaria.model.service;
 
 import com.swanimobiliaria.model.converter.PropertyConverter;
-import com.swanimobiliaria.model.converter.PropertyEditableConverter;
 import com.swanimobiliaria.model.domain.Property;
 import com.swanimobiliaria.model.dto.PropertyDTO;
 import com.swanimobiliaria.model.exception.ResourceNotFoundException;
@@ -10,10 +9,7 @@ import com.swanimobiliaria.model.type.PropertyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,18 +34,18 @@ public class PropertyService {
         return PropertyConverter.fromDomainToDTO(savedProperty);
     }
 
-    public void deleteProperty(UUID propertyId) {
+    public void deleteProperty(Integer propertyId) {
         Property property = getProperty(propertyId);
         propertyJpaRepository.delete(property);
     }
 
-    public PropertyDTO updateProperty(UUID propertyId, PropertyDTO propertyDTO) {
+    public PropertyDTO updateProperty(Integer propertyId, PropertyDTO propertyDTO) {
         Property property = getProperty(propertyId);
-        Property updatedProperty = propertyJpaRepository.save(PropertyEditableConverter.fromDTOtoDomain(property, propertyDTO));
+        Property updatedProperty = propertyJpaRepository.save(PropertyConverter.fromDTOtoDomain(property, propertyDTO));
         return PropertyConverter.fromDomainToDTO(updatedProperty);
     }
 
-    public PropertyDTO getPropertyById(UUID propertyId) {
+    public PropertyDTO getPropertyById(Integer propertyId) {
         Property property = getProperty(propertyId);
         return PropertyConverter.fromDomainToDTO(property);
     }
@@ -78,7 +74,7 @@ public class PropertyService {
         }
     }
 
-    private Property getProperty(UUID propertyId) {
+    private Property getProperty(Integer propertyId) {
         return propertyJpaRepository.findById(propertyId).orElseThrow(() -> new ResourceNotFoundException("Property not found!"));
     }
 }

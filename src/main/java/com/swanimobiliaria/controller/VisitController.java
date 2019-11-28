@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Api(value = "Visitas")
-@RequestMapping("/visitas")
+@RequestMapping("/public/visitas")
 @RestController
 public class VisitController {
 
@@ -68,7 +68,7 @@ public class VisitController {
             response = VisitDTO.class
     )
     @GetMapping(
-            path = "/all"
+            path = "/upcoming"
     )
     public List<VisitDTO> getUpcomingVisits() {
         return visitService.getUpcomingVisits();

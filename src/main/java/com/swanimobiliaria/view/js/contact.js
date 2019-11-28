@@ -4,7 +4,7 @@ function scheduleVisit() {
 
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8087/imoveis/' + queryId,
+        url: 'http://localhost:8087/public/imoveis/' + queryId,
 
         success: function (data) {
             var thumb = document.createElement('img');
@@ -36,7 +36,7 @@ function agendar() {
 
     $.ajax({
         type: 'POST',
-        url: 'http://localhost:8087/visitas/',
+        url: 'http://localhost:8087/public/visitas/',
 
         contentType: "application/json; charset=utf-8",
         dataType: "json",

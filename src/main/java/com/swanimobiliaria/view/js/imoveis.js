@@ -1,7 +1,7 @@
 function loadProperties() {
     $.ajax({
         type: 'GET',
-        url: 'http://localhost:8087/imoveis/',
+        url: 'http://localhost:8087/public/imoveis/',
 
         success: function (data) {
             var i;
@@ -9,7 +9,7 @@ function loadProperties() {
                 var j = Math.floor(Math.random() * (data.length));
                 var temp = data[j];
 
-                $('#matricula'.concat(i)).text(temp.id);
+                $('#matricula'.concat(i)).text(temp.codRef);
                 $('#tipo'.concat(i)).text(temp.businessType + ' - ' + temp.propertyType);
                 $('#valor'.concat(i)).text('R$ ' + temp.valor);
                 $('#cidade'.concat(i)).text(temp.cidade + ', ' + temp.estado);

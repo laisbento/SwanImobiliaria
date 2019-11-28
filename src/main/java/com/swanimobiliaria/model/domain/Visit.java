@@ -24,7 +24,7 @@ public class Visit {
     private UUID id;
 
     @Column(name = "imovel")
-    private UUID imovel;
+    private Integer imovel;
 
     @Column(name = "nome")
     private String nome;
@@ -46,11 +46,11 @@ public class Visit {
         this.id = id;
     }
 
-    public UUID getImovel() {
+    public Integer getImovel() {
         return imovel;
     }
 
-    public void setImovel(UUID imovel) {
+    public void setImovel(Integer imovel) {
         this.imovel = imovel;
     }
 

@@ -9,10 +9,11 @@ import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
-public interface PropertyJpaRepository extends JpaRepository<Property, UUID> {
+public interface PropertyJpaRepository extends JpaRepository<Property, Integer> {
 
     List<Property> findAll();
 
