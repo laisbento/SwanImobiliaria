@@ -1,12 +1,11 @@
 package com.swanimobiliaria.model.dto;
 
-import com.swanimobiliaria.model.type.PropertyType;
 import com.swanimobiliaria.model.type.BusinessType;
+import com.swanimobiliaria.model.type.PropertyType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
 import javax.validation.constraints.NotNull;
-import java.util.UUID;
 
 @ApiModel(
         value = "Imovel",

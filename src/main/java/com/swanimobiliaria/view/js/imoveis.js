@@ -50,3 +50,25 @@ function localMap(lat, lng) {
         map: map
     });
 }
+
+function setFavorite() {
+    var imovel = [];
+    var id = decodeURIComponent(window.location.search);
+    id = id.substring(4);
+
+    /**
+     * Verifica se a propriedade existe
+     * Caso exista, converte de String para Object
+     */
+    if (localStorage.hasOwnProperty("imoveis")) {
+        imovel = JSON.parse(localStorage.getItem("imoveis"));
+    }
+
+    /* Adiciona um novo valor no array criado */
+    imovel.push({favorite: id});
+
+    /* Salva o item */
+    localStorage.setItem("imoveis", JSON.stringify(imovel));
+
+    $('#heart').attr('src', '../imgs/heart2.png');
+}

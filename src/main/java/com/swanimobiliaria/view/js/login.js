@@ -20,6 +20,7 @@ function onSignIn() {
     var profile = googleUser.getBasicProfile();
     var timestamp = new Date();
 
+    $('#adm').addClass('hidden');
     $('#googleButton').addClass('hidden');
     $('#email').removeClass('hidden');
     $('#email').text('Bem-vindo(a) ' + profile.getName());
@@ -34,6 +35,7 @@ function signOut() {
     var timestamp = new Date();
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
+        $('#adm').removeClass('hidden');
         location.reload();
 
         addLog(profile, timestamp, 'logout')

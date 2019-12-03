@@ -1,6 +1,5 @@
 package com.swanimobiliaria.model.service;
 
-import com.swanimobiliaria.model.exception.ResourceNotFoundException;
 import com.swanimobiliaria.model.repository.UserJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

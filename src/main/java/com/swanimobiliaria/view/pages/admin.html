@@ -6,7 +6,7 @@
     <link href="../css/stylesheet.css" rel="stylesheet" type="text/css">
     <title>Swan Imobiliaria - Administracao</title>
 </head>
-<body onload="autoCompleteCep()">
+<body onload="carregaFunctions()">
 <div class="container d-flex flex-column">
     <div class="container d-flex justify-content-between align-items-center logo">
         <img alt="Swan Imob" id="logo" class="img-fluid" width="150" height="150" src="../imgs/logo-paginainicial.png"
@@ -14,9 +14,8 @@
         <label id="incluir" class="menu" onclick="insert()">Incluir</label>
         <label id="editar" class="menu" onclick="edit()">Editar</label>
         <label id="deletar" class="menu" onclick="del()">Deletar</label>
-        <label id="visitas" class="menu" onclick="">Visitas</label>
-        <label id="users" class="menu" onclick="">Usu&#225;rios</label>
-        <label id="logout" class="menu" onclick="">Sair</label>
+        <label id="visitas" class="menu" onclick="visitas()">Visitas</label>
+        <label id="logout" class="menu" onclick="location.href='index.html'">Sair</label>
     </div>
     <div class="container d-flex flex-column justify-content-center align-items-center">
         <label id="welcome">Bem-vindo(a)! Escolha um item do Menu para iniciar.</label>
@@ -74,7 +73,7 @@
                         <label>Numero:</label>
                     </td>
                     <td>
-                        <input name="numero" class="form-imovel" type="number" value placeholder="Digite o n&#250;mero"
+                        <input name="numero" class="form-imovel" type="text" value placeholder="Digite o n&#250;mero"
                                id="numero" maxlength="5"/>
                     </td>
                 </tr>
@@ -196,7 +195,6 @@
                                placeholder="Digite a latitude - ex: -21.156942"/>
                     </td>
                 </tr>
-                </tr>
                 </tbody>
             </table>
             <div class="d-flex justify-content-center opcao">
@@ -209,9 +207,9 @@
                 <label> C&#243;digo de Referencia:
                     <input type="text" id="codref" class="form-imovel" style="width: 200px"/>
                 </label>
-                    <div class="d-flex justify-content-center opcao" style="margin-bottom: 20px">
-                        <button id="okButton" onclick="buscarImovelEdit()">Buscar</button>
-                    </div>
+                <div class="d-flex justify-content-center opcao" style="margin-bottom: 20px">
+                    <button id="okButton" onclick="buscarImovelEdit()">Buscar</button>
+                </div>
                 <div id="editable-table" class="hidden">
                     <table>
                         <tbody>
@@ -264,7 +262,7 @@
                                 <label>Numero:</label>
                             </td>
                             <td>
-                                <input name="numero" class="form-imovel" type="number" value
+                                <input name="numero" class="form-imovel" type="text" value
                                        placeholder="Digite o n&#250;mero"
                                        id="numero-editable" maxlength="5"/>
                             </td>
@@ -385,9 +383,8 @@
                             </td>
                             <td>
                                 <input name="lng" class="form-imovel" type="text" id="lng-editable" value
-                                       placeholder="Digite a latitude - ex: -21.156942"/>
+                                       placeholder="Digite a longitude - ex: -21.156942"/>
                             </td>
-                        </tr>
                         </tr>
                         </tbody>
                     </table>
@@ -411,10 +408,18 @@
                         <tbody>
                         <tr>
                             <td>
+                                <label>C&#243;digo:</label>
+                            </td>
+                            <td>
+                                <input class="form-imovel" type="text" id="cod-imovel-del" readonly/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
                                 <label>Tipo do Im&#243;vel:</label>
                             </td>
                             <td>
-                                <input name="cep" class="form-imovel" type="text" id="tipo-imovel-del" readonly/>
+                                <input class="form-imovel" type="text" id="tipo-imovel-del" readonly/>
                             </td>
                         </tr>
                         <tr>
@@ -422,7 +427,7 @@
                                 <label>Tipo de Neg&#243;cio:</label>
                             </td>
                             <td>
-                                <input name="cep" class="form-imovel" type="text" id="tipo-negocio-del" readonly/>
+                                <input class="form-imovel" type="text" id="tipo-negocio-del" readonly/>
                             </td>
                         </tr>
                         <tr>
@@ -430,7 +435,7 @@
                                 <label>CEP:</label>
                             </td>
                             <td>
-                                <input name="cep" class="form-imovel" type="text" id="cep-del" readonly/>
+                                <input class="form-imovel" type="text" id="cep-del" readonly/>
                             </td>
                         </tr>
                         <tr>
@@ -438,7 +443,7 @@
                                 <label>Rua:</label>
                             </td>
                             <td>
-                                <input name="rua" class="form-imovel" type="text" id="rua-del" readonly/>
+                                <input class="form-imovel" type="text" id="rua-del" readonly/>
                             </td>
                         </tr>
                         <tr>
@@ -446,7 +451,7 @@
                                 <label>Numero:</label>
                             </td>
                             <td>
-                                <input name="numero" class="form-imovel" type="number" id="num-del" readonly/>
+                                <input class="form-imovel" type="number" id="num-del" readonly/>
                             </td>
                         </tr>
                         <tr>
@@ -454,7 +459,7 @@
                                 <label>Cidade:</label>
                             </td>
                             <td>
-                                <input name="cidade" class="form-imovel" type="text" id="cidade-del" readonly/>
+                                <input class="form-imovel" type="text" id="cidade-del" readonly/>
                             </td>
                         </tr>
                         <tr>
@@ -462,7 +467,7 @@
                                 <label>Estado:</label>
                             </td>
                             <td>
-                                <input name="uf" class="form-imovel" type="text" id="uf-del" readonly/>
+                                <input class="form-imovel" type="text" id="uf-del" readonly/>
                             </td>
                         </tr>
                         <tr>
@@ -470,7 +475,7 @@
                                 <label>&#193;rea:</label>
                             </td>
                             <td>
-                                <input name="area" class="form-imovel" type="text" id="area-del" readonly/>
+                                <input class="form-imovel" type="text" id="area-del" readonly/>
                             </td>
                         </tr>
                         <tr>
@@ -478,7 +483,7 @@
                                 <label>Link da foto:</label>
                             </td>
                             <td>
-                                <input name="foto" class="form-imovel" type="text" id="foto-del" readonly/>
+                                <input class="form-imovel" type="text" id="foto-del" readonly/>
                             </td>
                         </tr>
                         </tbody>
@@ -489,9 +494,35 @@
                 </div>
             </div>
         </div>
+        <div id="visitas-table-form" class="hidden">
+            <h1 class="label-visita">Pr&#243;ximas Visitas Agendadas</h1>
+            <div class="d-flex flex-column justify-content-center">
+                <div>
+                    <table id="visitas-table" class="fixed_header">
+                        <thead>
+                        <tr>
+                            <th>Cod. Im&#243;vel</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+                            <th>Data da Visita</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="../js/adm.js"></script>
+<script>
+function carregaFunctions() {
+    autoCompleteCep();
+    carregaVisitas();
+}
+</script>
 </body>
 </html>

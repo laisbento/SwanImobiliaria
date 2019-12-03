@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @Api(value = "Imovel")
 @RequestMapping("/public/imoveis")
@@ -72,7 +71,7 @@ public class PropertyController {
             message = "Success"
     )
     @DeleteMapping(
-            path = "{propertyId}"
+            path = "/{propertyId}"
     )
     public void deleteProperty(@PathVariable Integer propertyId) {
         propertyService.deleteProperty(propertyId);
@@ -109,7 +108,6 @@ public class PropertyController {
     public PropertyDTO getPropertyById(@PathVariable Integer propertyId){
         return propertyService.getPropertyById(propertyId);
     }
-
     @ApiOperation(
             value = "Get a property by some properties",
             response = PropertyDTO.class

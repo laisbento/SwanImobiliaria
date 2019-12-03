@@ -39,7 +39,7 @@ public class VisitController {
             response = VisitDTO.class
     )
     @GetMapping
-    public List<VisitDTO> getProperties() {
+    public List<VisitDTO> getVisits() {
         return visitService.getAllVisits();
     }
 

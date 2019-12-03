@@ -50,8 +50,12 @@ function agendar() {
             }
         ),
 
-        success: function (data) {
+        success: function () {
             alert("Sua visita foi agendada com sucesso!");
+            $('#inputName').val('');
+            $('#inputEmail').val('');
+            $('#inputDate').val('');
+            $('#inputPhone').val('');
         }
     });
 }

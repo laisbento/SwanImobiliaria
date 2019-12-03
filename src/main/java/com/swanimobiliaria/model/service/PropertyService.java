@@ -5,6 +5,7 @@ import com.swanimobiliaria.model.domain.Property;
 import com.swanimobiliaria.model.dto.PropertyDTO;
 import com.swanimobiliaria.model.exception.ResourceNotFoundException;
 import com.swanimobiliaria.model.repository.PropertyJpaRepository;
+import com.swanimobiliaria.model.strategy.SimplePropertyStrategy;
 import com.swanimobiliaria.model.type.PropertyType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +17,12 @@ import java.util.stream.Collectors;
 public class PropertyService {
 
     private PropertyJpaRepository propertyJpaRepository;
+    private SimplePropertyStrategy simplePropertyStrategy;
 
     @Autowired
-    public PropertyService(PropertyJpaRepository propertyJpaRepository) {
+    public PropertyService(PropertyJpaRepository propertyJpaRepository, SimplePropertyStrategy simplePropertyStrategy) {
         this.propertyJpaRepository = propertyJpaRepository;
+        this.simplePropertyStrategy = simplePropertyStrategy;
     }
 
     public List<PropertyDTO> getImoveis() {
@@ -51,27 +54,12 @@ public class PropertyService {
     }
 
     public List<PropertyDTO> getPropertyByOptions(PropertyType propertyType, String city, Integer rooms, Double priceFrom, Double priceTo) {
-        if (city.isEmpty() && priceFrom == null && priceTo == null) {
-            return propertyJpaRepository.findAllByPropertyTypeAndQuartos(propertyType, rooms)
-                    .stream()
-                    .map(PropertyConverter::fromDomainToDTO)
-                    .collect(Collectors.toList());
-        } else if (priceFrom == null && priceTo == null) {
-            return propertyJpaRepository.findAllByPropertyTypeAndQuartosAndCidadeLike(propertyType, rooms, city)
-                    .stream()
-                    .map(PropertyConverter::fromDomainToDTO)
-                    .collect(Collectors.toList());
-        } else if (priceTo == null) {
-            return propertyJpaRepository.findAllByPropertyTypeAndQuartosAndCidadeLikeAndValorGreaterThan(propertyType, rooms, city, priceFrom)
-                    .stream()
-                    .map(PropertyConverter::fromDomainToDTO)
-                    .collect(Collectors.toList());
-        } else {
-            return propertyJpaRepository.findAllByPropertyTypeAndQuartosAndCidadeLikeAndValorBetween(propertyType, rooms, city, priceFrom, priceTo)
-                    .stream()
-                    .map(PropertyConverter::fromDomainToDTO)
-                    .collect(Collectors.toList());
-        }
+        PropertyDTO propertyDTO = new PropertyDTO();
+        propertyDTO.setPropertyType(propertyType);
+        propertyDTO.setCidade(city);
+        propertyDTO.setQuartos(rooms);
+
+        return simplePropertyStrategy.chooseStrategy(propertyDTO, priceFrom, priceTo);
     }
 
     private Property getProperty(Integer propertyId) {

@@ -11,7 +11,8 @@
 <body onload="loadProperties()">
 <div class="container d-flex justify-content-around" style="margin-top: 5px">
     <div class="container d-flex justify-content-start">
-        <label id="adm" style="cursor: pointer" onclick="location.href='admin.html'">Administra&#231;&#227;o</label>
+        <label id="adm" style="cursor: pointer" onclick="location.href='login.html'">Administra&#231;&#227;o</label>
+        <label id="email"></label>
     </div>
     <div class="g-signin2" id="googleButton" data-onsuccess="onSignIn"></div>
     <label class="hidden" id="signOut" onclick="signOut()">Sair</label>
@@ -58,7 +59,7 @@
         </div>
     </div>
     <div class="container d-flex justify-content-center" style="margin-top: 20px">
-        <h1 class="label-visita">Imoveis em Destaque</h1>
+        <h1 class="label-visita">Im&#243;veis em Destaque</h1>
     </div>
     <div class="container d-flex flex-row justify-content-center" style="margin-top: 20px">
         <div class="imoveis" id="divClass1">
@@ -69,8 +70,6 @@
                     <h5 class="tipo" id="tipo1"></h5>
                     <h5 class="valor" id="valor1"></h5>
                     <h3 class="tituloCidade" id="cidade1"></h3>
-                    <input type="image" id="heart1" alt="like" src="../imgs/heart1.png" class="heart"
-                           onclick="setFavorite(1)">
                 </div>
             </div>
         </div>
@@ -82,8 +81,6 @@
                     <h5 class="tipo" id="tipo2"></h5>
                     <h5 class="valor" id="valor2"></h5>
                     <h3 class="tituloCidade" id="cidade2"></h3>
-                    <input type="image" id="heart2" alt="like" src="../imgs/heart1.png" class="heart"
-                           onclick="setFavorite(2)">
                 </div>
             </div>
         </div>
@@ -95,7 +92,6 @@
                     <h5 class="tipo" id="tipo3"></h5>
                     <h5 class="valor" id="valor3"></h5>
                     <h3 class="tituloCidade" id="cidade3"></h3>
-                    <input type="image" id="heart3" alt="like" src="../imgs/heart1.png" class="heart">
                 </div>
             </div>
         </div>
@@ -118,3 +114,4 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD9KDF3b4CCguquvcRONUTPDqU5fJwnRj4&libraries=places&callback=activePlacesSearch"></script>
 <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
 </body>
+</html>

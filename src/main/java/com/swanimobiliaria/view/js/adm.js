@@ -3,7 +3,7 @@ function insert() {
     $('#imovel-insert-form').removeClass('hidden');
     $('#imovel-edit-form').addClass('hidden');
     $('#imovel-delete-form').addClass('hidden');
-
+    $('#visitas-table-form').addClass('hidden');
 }
 
 function edit() {
@@ -11,6 +11,7 @@ function edit() {
     $('#imovel-insert-form').addClass('hidden');
     $('#imovel-edit-form').removeClass('hidden');
     $('#imovel-delete-form').addClass('hidden');
+    $('#visitas-table-form').addClass('hidden');
 }
 
 function del() {
@@ -18,6 +19,15 @@ function del() {
     $('#imovel-insert-form').addClass('hidden');
     $('#imovel-edit-form').addClass('hidden');
     $('#imovel-delete-form').removeClass('hidden');
+    $('#visitas-table-form').addClass('hidden');
+}
+
+function visitas() {
+    $('#welcome').addClass('hidden');
+    $('#imovel-insert-form').addClass('hidden');
+    $('#imovel-edit-form').addClass('hidden');
+    $('#imovel-delete-form').addClass('hidden');
+    $('#visitas-table-form').removeClass('hidden');
 }
 
 function autoCompleteCep() {
@@ -144,6 +154,10 @@ function buscarImovelEdit() {
             $('#lat-editable').val(data.lat);
             $('#lng-editable').val(data.lng);
 
+        },
+
+        error: function () {
+            alert('Imovel nao encontrado');
         }
     })
 }
@@ -158,6 +172,7 @@ function buscarImovelDel() {
         success: function (data) {
             $('#del-table').removeClass('hidden');
 
+            $('#cod-imovel-del').val(data.codRef);
             $('#tipo-imovel-del').val(data.propertyType);
             $('#tipo-negocio-del').val(data.businessType);
             $('#cep-del').val(data.cep);
@@ -228,5 +243,53 @@ function atualizar() {
 }
 
 function deletarImovel() {
-    
+    var cod = $('#cod-imovel-del').val();
+
+    var conf = confirm('Tem certeza que deseja deletar o imovel ' + cod + '? Essa acao eh irreversivel');
+
+    if (conf == true) {
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://localhost:8087/public/imoveis/' + cod,
+
+            success: function (data) {
+                alert('Imovel deletado com sucesso!');
+                location.reload();
+            },
+
+            error: function (data) {
+                alert('Houve um erro na solicitacaoo. Tente novamente.');
+                location.reload();
+            }
+
+        })
+    } else {
+        location.reload();
+    }
+}
+
+function carregaVisitas() {
+    $.ajax({
+        type: 'GET',
+        url: 'http://localhost:8087/public/visitas/upcoming',
+
+        success: function (data) {
+            var i;
+
+            for (i = 0; i < data.length; i++) {
+                var temp = data[i];
+
+                $('#visitas-table')
+                    .append('<tr>' +
+                        '<td>' + temp.propertyId + '</td>' +
+                        '<td>' + temp.name + '</td>' +
+                        '<td>' + temp.email + '</td>' +
+                        '<td>' + temp.phone + '</td>' +
+                        '<td>' + temp.visitDate.toString().substring(0,10) + '</td>' +
+                        '</tr>');
+            }
+
+        }
+    })
+
 }

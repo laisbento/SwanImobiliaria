@@ -52,7 +52,7 @@ function filtrar() {
                     showAgain(aux);
                     var temp = data[i];
                     $('#tipo'.concat(aux)).text(temp.businessType + ' - ' + temp.propertyType);
-                    $('#matricula'.concat(aux)).text(temp.id);
+                    $('#matricula'.concat(aux)).text(temp.codRef);
                     $('#valor'.concat(aux)).text('R$ ' + temp.valor);
                     $('#cidade'.concat(aux)).text(temp.cidade + ', ' + temp.estado);
 

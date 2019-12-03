@@ -11,7 +11,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.UUID;
 
 @Entity
 @Table(name = "imoveis")
@@ -65,6 +64,8 @@ public class Property {
     private String lng;
 
     @Id
+    @GeneratedValue(generator = "increment")
+    @GenericGenerator(name = "increment", strategy = "increment")
     @Column(name = "cod_ref")
     private Integer codRef;
 
