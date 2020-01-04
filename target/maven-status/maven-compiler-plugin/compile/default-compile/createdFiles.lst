@@ -1,9 +1,0 @@
-com/swanimobiliaria/converter/ImovelConverter.class
-com/swanimobiliaria/rest/ImoveisController.class
-com/swanimobiliaria/repository/ImovelJpaRepository.class
-com/swanimobiliaria/type/NegocioType.class
-com/swanimobiliaria/Application.class
-com/swanimobiliaria/type/ImovelType.class
-com/swanimobiliaria/service/ImovelService.class
-com/swanimobiliaria/dto/ImovelDTO.class
-com/swanimobiliaria/domain/Imovel.class
