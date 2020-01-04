@@ -1,5 +1,16 @@
 # Ignore folder named '.idea'
 /.idea
 
-# Ignore golder named 'target'
+# Ignore folder named 'target'
 /target
+
+#Ignore settings folder
+/.settings
+
+#Ignore other files
+
+.classpath
+.project
+SwanImobiliaria.eml
+SwanImobiliaria.iml
+
