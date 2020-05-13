@@ -3,7 +3,7 @@ package com.swanimobiliaria.model.dto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @ApiModel(
@@ -58,7 +58,7 @@ public class VisitDTO {
             example = "2019-10-24",
             required = true
     )
-    private Date visitDate;
+    private LocalDateTime visitDate;
 
     public UUID getId() {
         return id;
@@ -100,11 +100,11 @@ public class VisitDTO {
         this.phone = phone;
     }
 
-    public Date getVisitDate() {
+    public LocalDateTime getVisitDate() {
         return visitDate;
     }
 
-    public void setVisitDate(Date visitDate) {
+    public void setVisitDate(LocalDateTime visitDate) {
         this.visitDate = visitDate;
     }
 }

@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 @Api(value = "Login")
 @RequestMapping("/public/admin")
 @RestController
@@ -25,15 +27,15 @@ public class UserController {
 
     @ApiOperation(
             value = "Login a user",
-            response = boolean.class
+            response = UUID.class
     )
     @ApiResponse(
             code = 200,
             message = "Success",
-            response = boolean.class
+            response = UUID.class
     )
     @PostMapping
-    public boolean login(@RequestBody UserDTO userDTO) {
+    public UUID login(@RequestBody UserDTO userDTO) {
         return userService.findByUsernameAndPassword(userDTO.getUsername(), userDTO.getPassword());
     }
 }

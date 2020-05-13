@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @EnableScheduling
 public class ReminderVisitorScheduler {
 
-    private VisitService visitService;
+    private final VisitService visitService;
 
     @Autowired
     public ReminderVisitorScheduler(VisitService visitService) {

@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Entity
@@ -36,7 +36,7 @@ public class Visit {
     private String telefone;
 
     @Column(name = "data")
-    private Date data;
+    private LocalDateTime data;
 
     public UUID getId() {
         return id;
@@ -78,11 +78,11 @@ public class Visit {
         this.telefone = telefone;
     }
 
-    public Date getData() {
+    public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(Date data) {
+    public void setData(LocalDateTime data) {
         this.data = data;
     }
 }
