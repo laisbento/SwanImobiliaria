@@ -1,6 +1,6 @@
 ## Real State Web Application
 
-SwanImobiliaria was designed to simulate a real state web applcation. It was developed to be a semester evaluation project for the Federal Institute of Sao Paulo.
+SwanImobiliaria was designed to simulate a real state web applcation.
 
 This project uses the following technologies:
 
