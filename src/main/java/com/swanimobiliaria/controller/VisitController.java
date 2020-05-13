@@ -10,12 +10,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.UUID;
 
 @Api(value = "Visitas")
 @RequestMapping("/public/visits")
@@ -68,10 +70,10 @@ public class VisitController {
             response = VisitDTO.class
     )
     @GetMapping(
-            path = "/private/upcoming"
+            path = "/upcoming"
     )
-    public List<VisitDTO> getUpcomingVisits() {
-        return visitService.getUpcomingVisits();
+    public List<VisitDTO> getUpcomingVisits(@RequestHeader UUID authorization) {
+        return visitService.getUpcomingVisits(authorization);
     }
 
 

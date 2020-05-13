@@ -39,17 +39,16 @@ public class PropertyService {
                 .collect(Collectors.toList());
     }
 
-    public PropertyDTO createProperty(PropertyDTO propertyDTO) {
+    public PropertyDTO createProperty(UUID userId, PropertyDTO propertyDTO) {
+        userService.findByUserId(userId);
         Property savedProperty = propertyJpaRepository.save(PropertyConverter.fromDTOtoDomain(propertyDTO));
         return PropertyConverter.fromDomainToDTO(savedProperty);
     }
 
     public void deleteProperty(UUID userId, Integer propertyId) {
-        UUID userById = userService.findByUserId(userId);
-        if(Objects.nonNull(userById)) {
-            Property property = getProperty(propertyId);
-            propertyJpaRepository.delete(property);
-        }
+        userService.findByUserId(userId);
+        Property property = getProperty(propertyId);
+        propertyJpaRepository.delete(property);
     }
 
     public PropertyDTO updateProperty(UUID userId, Integer propertyId, PropertyDTO propertyDTO) {
@@ -71,7 +70,7 @@ public class PropertyService {
     }
 
     public List<PropertyDTO> getPropertyByOptions(String searchParam, PropertyType propertyType, String city, Integer rooms, Double priceFrom, Double priceTo) {
-        if(Objects.nonNull(searchParam)){
+        if (Objects.nonNull(searchParam)) {
             return propertyJpaRepository
                     .findAllBySearchTerm(searchParam)
                     .stream()
@@ -90,9 +89,9 @@ public class PropertyService {
         return propertyJpaRepository.findById(propertyId).orElseThrow(() -> new ResourceNotFoundException("Property not found!"));
     }
 
-    public List<PropertyDTO> getRandomProperty(){
+    public List<PropertyDTO> getRandomProperty() {
         long total = propertyJpaRepository.count();
-        int id = (int) ((random()/3) * total);
+        int id = (int) ((random() / 3) * total);
         return getImoveis(id, 3);
     }
 }

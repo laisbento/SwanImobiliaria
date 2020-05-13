@@ -14,20 +14,23 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
 public class VisitService {
 
-    private VisitJpaRepository visitJpaRepository;
-    private ReminderSender reminderSender;
-    private PropertyService propertyService;
+    private final VisitJpaRepository visitJpaRepository;
+    private final ReminderSender reminderSender;
+    private final PropertyService propertyService;
+    private final UserService userService;
 
     @Autowired
-    public VisitService(VisitJpaRepository visitJpaRepository, ReminderSender reminderSender, PropertyService propertyService) {
+    public VisitService(VisitJpaRepository visitJpaRepository, ReminderSender reminderSender, PropertyService propertyService, UserService userService) {
         this.visitJpaRepository = visitJpaRepository;
         this.reminderSender = reminderSender;
         this.propertyService = propertyService;
+        this.userService = userService;
     }
 
     /**
@@ -51,7 +54,8 @@ public class VisitService {
     /**
      * This service returns the upcoming visits from the current date
      */
-    public List<VisitDTO> getUpcomingVisits() {
+    public List<VisitDTO> getUpcomingVisits(UUID authorization) {
+        userService.findByUserId(authorization);
         return visitJpaRepository.getUpcomingVisits()
                 .stream()
                 .map(VisitConverter::fromDomainToDTO)

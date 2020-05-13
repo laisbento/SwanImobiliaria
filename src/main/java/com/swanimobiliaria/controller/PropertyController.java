@@ -64,7 +64,7 @@ public class PropertyController {
     @ResponseStatus(HttpStatus.CREATED)
     public PropertyDTO createProperty(@RequestHeader UUID authorization,
                                       @Valid @RequestBody PropertyDTO propertyDTO) {
-        return propertyService.createProperty(propertyDTO);
+        return propertyService.createProperty(authorization, propertyDTO);
     }
 
     @ApiOperation(
