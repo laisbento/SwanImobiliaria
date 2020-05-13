@@ -61,6 +61,7 @@ public class PropertyService {
 
     public PropertyDTO getPropertyById(Integer propertyId) {
         Property property = getProperty(propertyId);
+        //adding for testing purposes only
         try {
             Thread.sleep(800);
         } catch (InterruptedException e) {
