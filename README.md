@@ -9,5 +9,3 @@ This project uses the following technologies:
 - Spring Boot
 - Swagger
 - JPA and Hibernate
-- Javascript
-- HTML CSS and Bootstrap
