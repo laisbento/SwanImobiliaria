@@ -7,7 +7,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 
 @Component
 public class ReminderSender {
@@ -19,7 +19,7 @@ public class ReminderSender {
         this.javaMailSender = javaMailSender;
     }
 
-    public ReminderSender() {
+    private ReminderSender() {
     }
 
     public void sendEmail(VisitDTO visitDTO, PropertyDTO propertyDTO) {
@@ -29,8 +29,8 @@ public class ReminderSender {
     }
 
     private SimpleMailMessage buildEmail(VisitDTO visitDTO, PropertyDTO propertyDTO) {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyy");
-        String format = simpleDateFormat.format(visitDTO.getVisitDate());
+        DateTimeFormatter simpleDateFormat = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String format = visitDTO.getVisitDate().format(simpleDateFormat);
 
         SimpleMailMessage msg = new SimpleMailMessage();
         msg.setTo(visitDTO.getEmail());

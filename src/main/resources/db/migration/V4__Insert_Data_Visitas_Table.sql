@@ -1,0 +1,5 @@
+INSERT INTO visitas (id, imovel, nome, email, telefone, data) VALUES ('aef8e445-cac4-4c70-8ed9-c49518f99e73', 60, 'LAIS MEDEIROS BENTO', 'laismedeiros.92@gmail.com', '19988390888', '2019-11-29');
+INSERT INTO visitas (id, imovel, nome, email, telefone, data) VALUES ('2f612144-20bb-48ab-b8fe-9a52d14144ee', 36, 'LAIS MEDEIROS BENTO', 'laismedeiros.92@gmail.com', '19988390888', '2019-12-05');
+INSERT INTO visitas (id, imovel, nome, email, telefone, data) VALUES ('2b90549a-ff0a-4f04-ba65-786d4d85d65b', 92, 'LAIS MEDEIROS BENTO', 'laismedeiros.92@gmail.com', '19988390888', '2020-05-14');
+INSERT INTO visitas (id, imovel, nome, email, telefone, data) VALUES ('f7120fa3-c5b1-40e0-86bf-1be3cbbc0c67', 89, 'Rafael Vrech', 'rafavrech@gmail.com', '19982455281', '2020-05-14');
+INSERT INTO visitas (id, imovel, nome, email, telefone, data) VALUES ('cc74eb95-647a-4d3c-825f-89774a9fd087', 89, 'Stella Bento', 'stellabento16@gmail.com', '19981262332', '2020-05-15');

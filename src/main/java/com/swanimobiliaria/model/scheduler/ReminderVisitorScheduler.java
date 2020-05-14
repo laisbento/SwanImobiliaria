@@ -17,7 +17,7 @@ public class ReminderVisitorScheduler {
         this.visitService = visitService;
     }
 
-    @Scheduled(cron = "0 * * ? * *")
+    //@Scheduled(cron = "0 * * ? * *")
     private void sendDailyReminder(){
         visitService.sendVisitReminder();
     }

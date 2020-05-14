@@ -9,11 +9,8 @@ import com.swanimobiliaria.model.repository.VisitJpaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.TimeZone;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -66,11 +63,7 @@ public class VisitService {
      * This service gets all next day visits and send the costumer a reminder
      */
     public void sendVisitReminder() {
-        Calendar calendar = new GregorianCalendar();
-        calendar.setTimeZone(TimeZone.getTimeZone("UTC-3"));
-        calendar.setTime(new Date());
-        calendar.add(Calendar.DATE, +1);
-        Date tomorrow = calendar.getTime();
+        LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
 
         List<Visit> nextDayVisits = visitJpaRepository.getNextDayVisits(tomorrow);
 

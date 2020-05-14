@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -18,5 +19,5 @@ public interface VisitJpaRepository extends JpaRepository<Visit, UUID> {
     List<Visit> getUpcomingVisits();
 
     @Query(value = "SELECT visit FROM Visit visit WHERE visit.data = :tomorrow ")
-    List<Visit> getNextDayVisits(@Param("tomorrow") Date tomorrow);
+    List<Visit> getNextDayVisits(@Param("tomorrow") LocalDateTime tomorrow);
 }
