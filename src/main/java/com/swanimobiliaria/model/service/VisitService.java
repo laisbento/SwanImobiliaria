@@ -6,6 +6,7 @@ import com.swanimobiliaria.model.dto.PropertyDTO;
 import com.swanimobiliaria.model.dto.VisitDTO;
 import com.swanimobiliaria.model.messaging.ReminderSender;
 import com.swanimobiliaria.model.repository.VisitJpaRepository;
+import com.swanimobiliaria.model.type.ProcessType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +61,19 @@ public class VisitService {
     }
 
     /**
+     * This service cancel an upcoming visit
+     */
+    public void cancelVisit(UUID authorization, UUID visitId) {
+        userService.findByUserId(authorization);
+        visitJpaRepository.findById(visitId).ifPresent(visit -> {
+            visitJpaRepository.deleteById(visit.getId());
+            PropertyDTO propertyById = propertyService.getPropertyById(visit.getImovel());
+            reminderSender.sendEmail(VisitConverter.fromDomainToDTO(visit), propertyById, ProcessType.CANCEL);
+        });
+
+    }
+
+    /**
      * This service gets all next day visits and send the costumer a reminder
      */
     public void sendVisitReminder() {
@@ -74,7 +88,7 @@ public class VisitService {
 
             visitDTO.forEach(visit -> {
                 PropertyDTO propertyById = propertyService.getPropertyById(visit.getPropertyId());
-                reminderSender.sendEmail(visit, propertyById);
+                reminderSender.sendEmail(visit, propertyById, ProcessType.REMINDER);
             });
         }
     }

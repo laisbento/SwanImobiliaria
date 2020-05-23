@@ -7,7 +7,9 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -24,7 +26,7 @@ import java.util.UUID;
 @RestController
 public class VisitController {
 
-    private VisitService visitService;
+    private final VisitService visitService;
 
     @Autowired
     public VisitController(VisitService visitService) {
@@ -74,6 +76,22 @@ public class VisitController {
     )
     public List<VisitDTO> getUpcomingVisits(@RequestHeader UUID authorization) {
         return visitService.getUpcomingVisits(authorization);
+    }
+
+    @ApiOperation(
+            value = "Cancel a visit",
+            response = VisitDTO.class
+    )
+    @ApiResponse(
+            code = 200,
+            message = "Success"
+    )
+    @DeleteMapping(
+            path = "/{id}"
+    )
+    public void cancelVisit(@RequestHeader UUID authorization,
+                            @PathVariable UUID id) {
+        visitService.cancelVisit(authorization, id);
     }
 
 
