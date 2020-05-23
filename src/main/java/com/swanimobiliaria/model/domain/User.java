@@ -1,5 +1,8 @@
 package com.swanimobiliaria.model.domain;
 
+import com.swanimobiliaria.model.type.UserType;
+import lombok.Builder;
+import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.Column;
@@ -11,6 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @Entity
+@Data
 @Table(name = "users")
 public class User {
 
@@ -30,27 +34,8 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    public UUID getId() {
-        return id;
-    }
+    @NotNull
+    @Column(name = "type")
+    private String type;
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public String getUser() {
-        return username;
-    }
-
-    public void setUser(String user) {
-        this.username = user;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

@@ -17,28 +17,28 @@ public abstract class PropertyStrategy {
     private List<PropertyDTO> findByTypeAndRooms(PropertyType propertyType, Integer rooms) {
         return propertyJpaRepository.findAllByPropertyTypeAndQuartos(propertyType, rooms)
                 .stream()
-                .map(PropertyConverter::fromDomainToDTO)
+                .map(PropertyConverter::buildDTO)
                 .collect(Collectors.toList());
     }
 
     private List<PropertyDTO> findByTypeRoomsAndCity(PropertyType propertyType, Integer rooms, String city) {
         return propertyJpaRepository.findAllByPropertyTypeAndQuartosAndCidadeLike(propertyType, rooms, city)
                 .stream()
-                .map(PropertyConverter::fromDomainToDTO)
+                .map(PropertyConverter::buildDTO)
                 .collect(Collectors.toList());
     }
 
     private List<PropertyDTO> findByTypeRoomsCityAndPriceFrom(PropertyType propertyType, Integer rooms, String city, Double priceFrom) {
         return propertyJpaRepository.findAllByPropertyTypeAndQuartosAndCidadeLikeAndValorGreaterThan(propertyType, rooms, city, priceFrom)
                 .stream()
-                .map(PropertyConverter::fromDomainToDTO)
+                .map(PropertyConverter::buildDTO)
                 .collect(Collectors.toList());
     }
 
     private List<PropertyDTO> findByAllParameter(PropertyType propertyType, Integer rooms, String city, Double priceFrom, Double priceTo) {
         return propertyJpaRepository.findAllByPropertyTypeAndQuartosAndCidadeLikeAndValorBetween(propertyType, rooms, city, priceFrom, priceTo)
                 .stream()
-                .map(PropertyConverter::fromDomainToDTO)
+                .map(PropertyConverter::buildDTO)
                 .collect(Collectors.toList());
     }
 

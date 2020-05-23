@@ -35,14 +35,14 @@ public class PropertyService {
     public List<PropertyDTO> getImoveis(int page, int size) {
         return propertyJpaRepository.findAll(PageRequest.of(page, size))
                 .stream()
-                .map(PropertyConverter::fromDomainToDTO)
+                .map(PropertyConverter::buildDTO)
                 .collect(Collectors.toList());
     }
 
     public PropertyDTO createProperty(UUID userId, PropertyDTO propertyDTO) {
         userService.findByUserId(userId);
-        Property savedProperty = propertyJpaRepository.save(PropertyConverter.fromDTOtoDomain(propertyDTO));
-        return PropertyConverter.fromDomainToDTO(savedProperty);
+        Property savedProperty = propertyJpaRepository.save(PropertyConverter.buildDomain(propertyDTO));
+        return PropertyConverter.buildDTO(savedProperty);
     }
 
     public void deleteProperty(UUID userId, Integer propertyId) {
@@ -54,8 +54,8 @@ public class PropertyService {
     public PropertyDTO updateProperty(UUID userId, Integer propertyId, PropertyDTO propertyDTO) {
         userService.findByUserId(userId);
         Property property = getProperty(propertyId);
-        Property updatedProperty = propertyJpaRepository.save(PropertyConverter.fromDTOtoDomain(property, propertyDTO));
-        return PropertyConverter.fromDomainToDTO(updatedProperty);
+        Property updatedProperty = propertyJpaRepository.save(PropertyConverter.buildDomain(property, propertyDTO));
+        return PropertyConverter.buildDTO(updatedProperty);
     }
 
     public PropertyDTO getPropertyById(Integer propertyId) {
@@ -66,7 +66,7 @@ public class PropertyService {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return PropertyConverter.fromDomainToDTO(property);
+        return PropertyConverter.buildDTO(property);
     }
 
     public List<PropertyDTO> getPropertyByOptions(String searchParam, PropertyType propertyType, String city, Integer rooms, Double priceFrom, Double priceTo) {
@@ -74,13 +74,14 @@ public class PropertyService {
             return propertyJpaRepository
                     .findAllBySearchTerm(searchParam)
                     .stream()
-                    .map(PropertyConverter::fromDomainToDTO)
+                    .map(PropertyConverter::buildDTO)
                     .collect(Collectors.toList());
         }
-        PropertyDTO propertyDTO = new PropertyDTO();
-        propertyDTO.setPropertyType(propertyType);
-        propertyDTO.setCidade(city);
-        propertyDTO.setQuartos(rooms);
+        PropertyDTO propertyDTO = PropertyDTO.builder()
+                .propertyType(propertyType)
+                .cidade(city)
+                .quartos(rooms)
+                .build();
 
         return simplePropertyStrategy.chooseStrategy(propertyDTO, priceFrom, priceTo);
     }

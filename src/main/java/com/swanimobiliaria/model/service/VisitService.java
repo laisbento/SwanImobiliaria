@@ -37,7 +37,7 @@ public class VisitService {
     public List<VisitDTO> getAllVisits() {
         return visitJpaRepository.findAll()
                 .stream()
-                .map(VisitConverter::fromDomainToDTO)
+                .map(VisitConverter::buildDTO)
                 .collect(Collectors.toList());
     }
 
@@ -45,8 +45,8 @@ public class VisitService {
      * This service creates a new visit appointment
      */
     public VisitDTO createVisit(VisitDTO visitDTO) {
-        Visit savedVisit = visitJpaRepository.save(VisitConverter.fromDTOtoDomain(visitDTO));
-        return VisitConverter.fromDomainToDTO(savedVisit);
+        Visit savedVisit = visitJpaRepository.save(VisitConverter.buildDomain(visitDTO));
+        return VisitConverter.buildDTO(savedVisit);
     }
 
     /**
@@ -56,7 +56,7 @@ public class VisitService {
         userService.findByUserId(authorization);
         return visitJpaRepository.getUpcomingVisits()
                 .stream()
-                .map(VisitConverter::fromDomainToDTO)
+                .map(VisitConverter::buildDTO)
                 .collect(Collectors.toList());
     }
 
@@ -68,7 +68,7 @@ public class VisitService {
         visitJpaRepository.findById(visitId).ifPresent(visit -> {
             visitJpaRepository.deleteById(visit.getId());
             PropertyDTO propertyById = propertyService.getPropertyById(visit.getImovel());
-            reminderSender.sendEmail(VisitConverter.fromDomainToDTO(visit), propertyById, ProcessType.CANCEL);
+            reminderSender.sendEmail(VisitConverter.buildDTO(visit), propertyById, ProcessType.CANCEL);
         });
 
     }
@@ -83,7 +83,7 @@ public class VisitService {
 
         if(!nextDayVisits.isEmpty()) {
             List<VisitDTO> visitDTO = nextDayVisits.stream()
-                    .map(VisitConverter::fromDomainToDTO)
+                    .map(VisitConverter::buildDTO)
                     .collect(Collectors.toList());
 
             visitDTO.forEach(visit -> {

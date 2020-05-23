@@ -4,6 +4,8 @@ import com.swanimobiliaria.model.type.BusinessType;
 import com.swanimobiliaria.model.type.PropertyType;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
+import lombok.Data;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,6 +13,8 @@ import javax.validation.constraints.NotNull;
         value = "Imovel",
         description = "Model of a Imovel"
 )
+@Data
+@Builder
 public class PropertyDTO {
 
     @ApiModelProperty(
@@ -142,131 +146,4 @@ public class PropertyDTO {
     )
     private Integer codRef;
 
-    public PropertyType getPropertyType() {
-        return propertyType;
-    }
-
-    public void setPropertyType(PropertyType propertyType) {
-        this.propertyType = propertyType;
-    }
-
-    public String getRua() {
-        return rua;
-    }
-
-    public void setRua(String rua) {
-        this.rua = rua;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public String getCidade() {
-        return cidade;
-    }
-
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-
-    public String getEstado() {
-        return estado;
-    }
-
-    public void setEstado(String estado) {
-        this.estado = estado;
-    }
-
-    public Integer getCep() {
-        return cep;
-    }
-
-    public void setCep(Integer cep) {
-        this.cep = cep;
-    }
-
-    public Integer getQuartos() {
-        return quartos;
-    }
-
-    public void setQuartos(Integer quartos) {
-        this.quartos = quartos;
-    }
-
-    public Integer getBanheiros() {
-        return banheiros;
-    }
-
-    public void setBanheiros(Integer banheiros) {
-        this.banheiros = banheiros;
-    }
-
-    public Integer getVagas() {
-        return vagas;
-    }
-
-    public void setVagas(Integer vagas) {
-        this.vagas = vagas;
-    }
-
-    public Double getArea() {
-        return area;
-    }
-
-    public void setArea(Double area) {
-        this.area = area;
-    }
-
-    public BusinessType getBusinessType() {
-        return businessType;
-    }
-
-    public void setBusinessType(BusinessType businessType) {
-        this.businessType = businessType;
-    }
-
-    public String getThumbnail() {
-        return thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        this.thumbnail = thumbnail;
-    }
-
-    public Double getValor() {
-        return valor;
-    }
-
-    public void setValor(Double valor) {
-        this.valor = valor;
-    }
-
-    public String getLat() {
-        return lat;
-    }
-
-    public void setLat(String lat) {
-        this.lat = lat;
-    }
-
-    public String getLng() {
-        return lng;
-    }
-
-    public void setLng(String lng) {
-        this.lng = lng;
-    }
-
-    public Integer getCodRef() {
-        return codRef;
-    }
-
-    public void setCodRef(Integer codRef) {
-        this.codRef = codRef;
-    }
 }

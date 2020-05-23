@@ -2,6 +2,8 @@ package com.swanimobiliaria.model.dto;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
+import lombok.Data;
 
 import java.time.LocalDateTime;
 import java.util.UUID;
@@ -10,6 +12,8 @@ import java.util.UUID;
         value = "Visit",
         description = "Model of a Visit"
 )
+@Builder
+@Data
 public class VisitDTO {
 
     @ApiModelProperty(
@@ -60,51 +64,4 @@ public class VisitDTO {
     )
     private LocalDateTime visitDate;
 
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public Integer getPropertyId() {
-        return propertyId;
-    }
-
-    public void setPropertyId(Integer propertyId) {
-        this.propertyId = propertyId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public LocalDateTime getVisitDate() {
-        return visitDate;
-    }
-
-    public void setVisitDate(LocalDateTime visitDate) {
-        this.visitDate = visitDate;
-    }
 }

@@ -2,34 +2,33 @@ package com.swanimobiliaria.model.converter;
 
 import com.swanimobiliaria.model.domain.Property;
 import com.swanimobiliaria.model.dto.PropertyDTO;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class PropertyConverter {
 
-    private PropertyConverter() {
+    public PropertyDTO buildDTO(Property property){
+        return PropertyDTO.builder()
+                .propertyType(property.getPropertyType())
+                .rua(property.getRua())
+                .numero(property.getNumero())
+                .cidade(property.getCidade())
+                .estado(property.getEstado())
+                .cep(property.getCep())
+                .quartos(property.getQuartos())
+                .banheiros(property.getBanheiros())
+                .vagas(property.getVagas())
+                .area(property.getArea())
+                .businessType(property.getBusinessType())
+                .thumbnail(property.getThumbnail())
+                .valor(property.getValor())
+                .lat(property.getLat())
+                .lng(property.getLng())
+                .codRef(property.getCodRef())
+                .build();
     }
 
-    public static PropertyDTO fromDomainToDTO(Property property){
-        PropertyDTO propertyDTO = new PropertyDTO();
-        propertyDTO.setPropertyType(property.getImovelType());
-        propertyDTO.setRua(property.getRua());
-        propertyDTO.setNumero(property.getNumero());
-        propertyDTO.setCidade(property.getCidade());
-        propertyDTO.setEstado(property.getEstado());
-        propertyDTO.setCep(property.getCep());
-        propertyDTO.setQuartos(property.getQuartos());
-        propertyDTO.setBanheiros(property.getBanheiros());
-        propertyDTO.setVagas(property.getVagas());
-        propertyDTO.setArea(property.getArea());
-        propertyDTO.setBusinessType(property.getNegocioType());
-        propertyDTO.setThumbnail(property.getThumbnail());
-        propertyDTO.setValor(property.getValor());
-        propertyDTO.setLat(property.getLat());
-        propertyDTO.setLng(property.getLng());
-        propertyDTO.setCodRef(property.getCodRef());
-        return propertyDTO;
-    }
-
-    public static Property fromDTOtoDomain(PropertyDTO propertyDTO){
+    public Property buildDomain(PropertyDTO propertyDTO){
         Property property = new Property();
         property.setPropertyType(propertyDTO.getPropertyType());
         property.setRua(propertyDTO.getRua());
@@ -50,7 +49,7 @@ public class PropertyConverter {
         return property;
     }
 
-    public static Property fromDTOtoDomain(Property property, PropertyDTO propertyDTO) {
+    public Property buildDomain(Property property, PropertyDTO propertyDTO) {
         property.setPropertyType(propertyDTO.getPropertyType());
         property.setRua(propertyDTO.getRua());
         property.setNumero(propertyDTO.getNumero());

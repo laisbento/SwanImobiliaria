@@ -2,25 +2,23 @@ package com.swanimobiliaria.model.converter;
 
 import com.swanimobiliaria.model.domain.Visit;
 import com.swanimobiliaria.model.dto.VisitDTO;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public class VisitConverter {
 
-    private VisitConverter() {
+    public VisitDTO buildDTO(Visit visit) {
+        return VisitDTO.builder()
+                .id(visit.getId())
+                .propertyId(visit.getImovel())
+                .name(visit.getNome())
+                .email(visit.getEmail())
+                .phone(visit.getTelefone())
+                .visitDate(visit.getData())
+                .build();
     }
 
-    public static VisitDTO fromDomainToDTO(Visit visit) {
-        VisitDTO visitDTO = new VisitDTO();
-        visitDTO.setId(visit.getId());
-        visitDTO.setPropertyId(visit.getImovel());
-        visitDTO.setName(visit.getNome());
-        visitDTO.setEmail(visit.getEmail());
-        visitDTO.setPhone(visit.getTelefone());
-        visitDTO.setVisitDate(visit.getData());
-
-        return visitDTO;
-    }
-
-    public static Visit fromDTOtoDomain(VisitDTO visitDTO) {
+    public Visit buildDomain(VisitDTO visitDTO) {
         Visit visit = new Visit();
         visit.setImovel(visitDTO.getPropertyId());
         visit.setNome(visitDTO.getName());

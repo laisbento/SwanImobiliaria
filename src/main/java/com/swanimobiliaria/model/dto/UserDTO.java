@@ -1,9 +1,14 @@
 package com.swanimobiliaria.model.dto;
 
+import com.swanimobiliaria.model.type.UserType;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.Builder;
+import lombok.Data;
 
 import java.util.UUID;
 
+@Builder
+@Data
 public class UserDTO {
 
     @ApiModelProperty(
@@ -29,27 +34,13 @@ public class UserDTO {
     )
     private String password;
 
-    public UUID getId() {
-        return id;
-    }
+    @ApiModelProperty(
+            value = "User's type",
+            required = true,
+            dataType = "com.swanimobiliaria.model.type.UserType",
+            allowableValues = "VISITOR, ADMIN"
+    )
+    private UserType type;
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
