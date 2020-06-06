@@ -8,9 +8,6 @@
 /.settings
 
 #Ignore other files
-
-.classpath
-.project
 SwanImobiliaria.eml
 SwanImobiliaria.iml
 

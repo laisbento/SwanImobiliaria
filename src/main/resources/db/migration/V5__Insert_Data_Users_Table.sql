@@ -1,1 +1,2 @@
-INSERT INTO users (id, username, password) VALUES ('c733bd99-1440-475c-a4a1-d58f039e7c1f', 'laisbento', '$2a$10$C9gBAsi.vZi5i/gOdFZIwufbDtyJHz/kJ7gxbnHlGHsOI05sRc6SG');
+INSERT INTO users (id, username, password, type) VALUES ('c733bd99-1440-475c-a4a1-d58f039e7c1f', 'laisbento', '$2a$10$C9gBAsi.vZi5i/gOdFZIwufbDtyJHz/kJ7gxbnHlGHsOI05sRc6SG', 'ADMIN');
+INSERT INTO users (id, username, password, type) VALUES ('f3e9cf72-bf7d-40aa-b1aa-34b3b6087176', 'lais', '$2a$12$S1GEIDaX4JcVBanCeApb2.pF9xua/9jbbSK5kosHQLgN8gzo8dVkK', 'ADMIN');
