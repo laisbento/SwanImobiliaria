@@ -1,1 +1,1 @@
-web: mvn clean install && java -jar target/*.jar
+web: java -jar -Dserver.port=$PORT target/com.swanimobiliaria-1.0-SNAPSHOT.jar
