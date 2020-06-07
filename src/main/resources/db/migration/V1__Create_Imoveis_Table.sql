@@ -15,5 +15,5 @@ create table imoveis
     valor numeric(10, 2),
     lat varchar(20),
     lng varchar(20),
-    cod_ref serial not null primary key
+    cod_ref serial unique not null primary key
 );

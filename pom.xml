@@ -17,11 +17,12 @@
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
                 <configuration>
-                    <url>jdbc:h2:file:~/dasboot</url>
+                    <driver>org.postgresql.Driver</driver>
+                    <url>jdbc:postgresql://localhost:5432/swan_imobiliaria</url>
                     <user>lais</user>
                     <password>1234</password>
                     <schemas>
-                        <schema>swan_imobiliaria</schema>
+                        <schema>public</schema>
                     </schemas>
                 </configuration>
             </plugin>
@@ -76,11 +77,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.flywaydb</groupId>
