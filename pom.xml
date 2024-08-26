@@ -45,7 +45,7 @@
 
     <properties>
         <springfox-swagger2-version>2.6.1</springfox-swagger2-version>
-        <springfox-swaggerui-version>2.6.1</springfox-swaggerui-version>
+        <springfox-swaggerui-version>2.10.0</springfox-swaggerui-version>
     </properties>
 
     <dependencies>
